@@ -1,0 +1,25 @@
+package services;
+
+import org.junit.jupiter.api.BeforeAll;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
+
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.port;
+
+public class BaseTest {
+	
+	@BeforeAll
+	public static void setup() {
+		RestAssured.baseURI = "http://localhost";
+		RestAssured.port = 8080;
+		RestAssured.basePath = "/api";
+		
+		RestAssured.requestSpecification = new RequestSpecBuilder()
+				.setContentType(ContentType.JSON)
+				.build();
+		
+	}
+}
+

@@ -1,0 +1,30 @@
+package tests.RESTRIÇÕES;
+
+import static io.restassured.RestAssured.given;
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.Matchers.equalTo;
+
+import services.BaseTest;
+import static constants.Endpoints.CONSULTAR_UMA_RESTRICAO_CPF;
+
+public class GETRestricoesTest extends BaseTest {
+	
+
+	@Test 
+	public void deveConsultarRestricao() {
+		given()
+		  .log().all()	
+		.when()
+	      .get(CONSULTAR_UMA_RESTRICAO_CPF)
+	.then()
+	     .log().all()
+	     .assertThat()
+	     .statusCode(200)
+	     .and()
+	     .body("message", equalTo("O CPF 97093236014 tem problema"));
+	
+
+}
+		
+	}
+

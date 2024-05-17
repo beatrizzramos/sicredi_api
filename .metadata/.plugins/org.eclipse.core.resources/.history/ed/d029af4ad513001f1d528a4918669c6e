@@ -1,0 +1,26 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.SIMULACOES;
+import models.simulacoes;
+
+import com.github.javafaker.Faker;
+
+import services.BaseTest;
+
+public class PUTSimulacoesTest extends BaseTest {
+	private static Faker faker = new Faker();
+	private static simulacoes simulacoes = new simulacoes();
+	private static simulacoes alteracao = new simulacoes();
+	
+	//CT - ALTERAR SIMULAÇÃO COM CPF EXISTENTE COM SUCESSO
+	
+	
+	//CT - ALTERAR SIMULAÇÃO COM CPF INEXISTENTE 
+	
+	
+	//CT - ALTERAR SIMULAÇÃO COM CPF EXISTENTE COM SUCESSO
+	
+	
+	
+	
+}

@@ -1,0 +1,16 @@
+package constants;
+
+public class Endpoints {
+	
+	private static final String CONSULTAR_UMA_RESTRICAO_CPF = "/v1/restricoes/97093236014";
+	private static final String CONSULTAR_UMA_RESTRICAO01_CPF = "/v1/restricoes/60094146012";
+	private static final String CONSULTAR_UMA_RESTRICAO02_CPF = "/v1/restricoes/84809766080";
+	private static final String CONSULTAR_UMA_RESTRICAO03_CPF = "/v1/restricoes/62648716050";
+	private static final String CONSULTAR_UMA_RESTRICAO04_CPF = "/v1/restricoes/26276298085";
+	private static final String CONSULTAR_UMA_RESTRICAO05_CPF = "/v1/restricoes/01317496094";
+	private static final String CONSULTAR_UMA_RESTRICAO06_CPF = "/v1/restricoes/55856777050";
+	private static final String CONSULTAR_UMA_RESTRICAO07_CPF = "/v1/restricoes/19626829001";
+	private static final String CONSULTAR_UMA_RESTRICAO08_CPF = "/v1/restricoes/24094592008";
+	private static final String CONSULTAR_UMA_RESTRICAO09_CPF = "/v1/restricoes/58063164083";
+
+}

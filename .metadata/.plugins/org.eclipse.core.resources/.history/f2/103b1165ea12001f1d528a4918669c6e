@@ -1,0 +1,167 @@
+package tests.RESTRIÇÕES;
+
+import static io.restassured.RestAssured.when;
+
+import org.junit.jupiter.api.Test;
+import static org.hamcrest.Matchers.equalTo;
+
+import services.BaseTest;
+import static constants.Endpoints.CONSULTAR_CPF01;
+import static constants.Endpoints.CONSULTAR_CPF02;
+import static constants.Endpoints.CONSULTAR_CPF03;
+import static constants.Endpoints.CONSULTAR_CPF04;
+import static constants.Endpoints.CONSULTAR_CPF05;
+import static constants.Endpoints.CONSULTAR_CPF06;
+import static constants.Endpoints.CONSULTAR_CPF07;
+import static constants.Endpoints.CONSULTAR_CPF08;
+import static constants.Endpoints.CONSULTAR_CPF09;
+import static constants.Endpoints.CONSULTAR_CPF10;
+import static constants.Endpoints.CONSULTAR_CPF_SEM_RESTRICAO;
+
+public class GETRestricoesTest extends BaseTest {
+	
+
+	@Test 
+	public void deveConsultarRestricao1() {	
+		
+		when().
+		get(CONSULTAR_CPF01).
+		then().
+		log().all().
+		statusCode(200).
+		and().
+		body("mensagem", equalTo("O CPF 97093236014 possui retrição"));
+}
+	@Test 
+	public void deveConsultarRestricao2() {	
+		
+		when().
+		get(CONSULTAR_CPF02).
+		then().
+		log().all().
+		statusCode(200).
+		and().
+		body("mensagem", equalTo("O CPF 60094146012 possui retrição"));
+	}
+	
+		@Test 
+		public void deveConsultarRestricao3() {	
+			
+			when().
+			get(CONSULTAR_CPF03).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 84809766080 possui retrição"));
+			
+}
+		
+		@Test 
+		public void deveConsultarRestricao4() {	
+			
+			when().
+			get(CONSULTAR_CPF04).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 62648716050 tem problema"));
+	}
+
+		@Test 
+		public void deveConsultarRestricao5() {	
+			
+			when().
+			get(CONSULTAR_CPF05).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 26276298085 tem problema"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao6() {	
+			
+			when().
+			get(CONSULTAR_CPF06).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 01317496094 tem problema"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao7() {	
+			
+			when().
+			get(CONSULTAR_CPF07).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 55856777050 tem problema"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao8() {	
+			
+			when().
+			get(CONSULTAR_CPF08).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 19626829001 tem problema"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao9() {	
+			
+			when().
+			get(CONSULTAR_CPF09).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 24094592008 tem problema"));
+		
+		}
+		
+		@Test 
+		public void deveConsultarRestricao10() {	
+			
+			when().
+			get(CONSULTAR_CPF10).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 58063164083 tem problema"));
+
+		}
+		
+		
+		//CPF SEM RETRIÇÃO
+		
+		@Test 
+		public void deveConsultarCPFSemRestricao() {	
+			
+			when().
+			get(CONSULTAR_CPF_SEM_RESTRICAO).
+			then().
+			log().all().
+			statusCode(204).
+			and().
+			body("mensagem", equalTo("Não possui restrição"));
+		
+		}
+}
+		
+		
+		
+		
+		
+		

@@ -1,0 +1,208 @@
+package tests.RESTRIÇÕES;
+
+import static io.restassured.RestAssured.when;
+
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.Matchers.equalTo;
+import static models.faker.gerarCPF;
+
+import services.BaseTest;
+import static constants.Endpoints.CONSULTAR_CPF01;
+import static constants.Endpoints.CONSULTAR_CPF02;
+import static constants.Endpoints.CONSULTAR_CPF03;
+import static constants.Endpoints.CONSULTAR_CPF04;
+import static constants.Endpoints.CONSULTAR_CPF05;
+import static constants.Endpoints.CONSULTAR_CPF06;
+import static constants.Endpoints.CONSULTAR_CPF07;
+import static constants.Endpoints.CONSULTAR_CPF08;
+import static constants.Endpoints.CONSULTAR_CPF09;
+import static constants.Endpoints.CONSULTAR_CPF10;
+import static constants.Endpoints.CONSULTAR_CPF_SEM_RESTRICAO;
+import static constants.Endpoints.NAO_CONSULTAR_CPF_INVALID0;
+import static constants.Endpoints.NAO_CONSULTAR_CPF_LETRAS;
+
+
+public class GETRestricoesTest extends BaseTest {
+	
+
+	
+	// FOI DADO 10 CPFs COM RETRIÇÕES 
+	//CT001_001
+	
+	@Test 
+	public void deveConsultarRestricao1() {	
+		
+		when().
+		get(CONSULTAR_CPF01).
+		then().
+		log().all().
+		statusCode(200).
+		and().
+		body("mensagem", equalTo("O CPF 97093236014 possui retrição"));
+}
+	    @Test 
+	    public void deveConsultarRestricao2() {	
+		
+		when().
+		get(CONSULTAR_CPF02).
+		then().
+		log().all().
+		statusCode(200).
+		and().
+		body("mensagem", equalTo("O CPF 60094146012 possui retrição"));
+	}
+	
+		@Test 
+		public void deveConsultarRestricao3() {	
+			
+			when().
+			get(CONSULTAR_CPF03).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 84809766080 possui retrição"));
+			
+}
+		
+		@Test 
+		public void deveConsultarRestricao4() {	
+			
+			when().
+			get(CONSULTAR_CPF04).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 62648716050 possui retrição"));
+	}
+
+		@Test 
+		public void deveConsultarRestricao5() {	
+			
+			when().
+			get(CONSULTAR_CPF05).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 26276298085 possui retrição"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao6() {	
+			
+			when().
+			get(CONSULTAR_CPF06).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 01317496094 possui retrição"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao7() {	
+			
+			when().
+			get(CONSULTAR_CPF07).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 55856777050 possui retrição"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao8() {	
+			
+			when().
+			get(CONSULTAR_CPF08).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 19626829001 possui retrição"));
+		}
+		
+		@Test 
+		public void deveConsultarRestricao9() {	
+			
+			when().
+			get(CONSULTAR_CPF09).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 24094592008 possui retrição"));
+		
+		}
+		
+		@Test 
+		public void deveConsultarRestricao10() {	
+			
+			when().
+			get(CONSULTAR_CPF10).
+			then().
+			log().all().
+			statusCode(200).
+			and().
+			body("mensagem", equalTo("O CPF 58063164083 tem problema"));
+
+		}
+		
+		
+		//CPF SEM RETRIÇÃO - SUGERIR MELHORIAS
+		//CT002_001
+		@Test 
+		public void deveConsultarCPFSemRestricao() {	
+			
+			when().
+			get(CONSULTAR_CPF_SEM_RESTRICAO).
+			then().
+			log().all().
+			statusCode(204);
+		}
+		
+		@Test
+	    public void deveRetornarStatusComCPFAleatorio(){
+	        String cpf = faker.gerarCPF();
+
+	        when().
+			get(CONSULTAR_CPF_SEM_RESTRICAO, cpf).
+			then().
+			log().all().
+			statusCode(204);
+		}
+		
+		
+		
+		
+		//CT003_001
+		@Test 
+		public void naoDeveConsultarCPFInvalido() {	
+			
+			when().
+			get(NAO_CONSULTAR_CPF_INVALID0).
+			then().
+			log().all().
+			statusCode(400);
+		
+}
+		//CT003_002
+		@Test 
+		public void naoDeveConsultarCPFLetras() {	
+			
+			when().
+			get(NAO_CONSULTAR_CPF_LETRAS).
+			then().
+			log().all().
+			statusCode(400);
+		
+		}
+}		
+		
+		
+		
+		

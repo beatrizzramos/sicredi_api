@@ -1,0 +1,157 @@
+package tests.SIMULAÇÕES;
+
+
+import static io.restassured.RestAssured.given;
+import org.junit.jupiter.api.Test;
+import io.restassured.http.ContentType;
+
+import services.BaseTest;
+
+import static constants.Endpoints.ATUALIZAR_CPF;
+import static constants.Endpoints.ATUALIZAR_NOME;
+import static constants.Endpoints.ATUALIZAR_EMAIL;
+import static constants.Endpoints.ATUALIZAR_PARCELAS;
+import static constants.Endpoints.ATUALIZAR_VALOR;
+import static constants.Endpoints.ATUALIZAR_SEGURO;
+
+
+
+
+public class PUTSimulacoesTest extends BaseTest {
+
+	//CT001 - ALTERAR CPF DE SIMULAÇÃO EXISTENTE 
+	
+	@Test 
+	public void deveAlterarCPF() {
+		String payload = "{\n" +
+				"  \"nome\": \"Claud Torp\",\n" +
+                "  \"cpf\": 12345678911,\n" +
+                "  \"email\": \"rickey.williamson@gmail.com\",\n" +
+                "  \"valor\": 19916.00,\n" +
+                "  \"parcelas\": 13,\n" +
+                "  \"seguro\": true\n" +
+                "}";
+		given().
+		body(payload).contentType(ContentType.JSON).
+		when().
+		put(ATUALIZAR_CPF).
+		then().
+		log().all().
+		statusCode(200);
+	}
+	
+		
+	//CT002 - ALTERAR NOME DE SIMULAÇÃO EXISTENTE 
+	
+		@Test 
+		public void deveAlterarNome() {
+			String payload = "{\n" +
+					"  \"nome\": \"BIA RAMOS\",\n" +
+	                "  \"cpf\": 76135630867,\n" +
+	                "  \"email\": \"coral.rippin@gmail.com\",\n" +
+	                "  \"valor\": 3921.00,\n" +
+	                "  \"parcelas\": 35,\n" +
+	                "  \"seguro\": true\n" +
+	                "}";
+			given().
+			body(payload).contentType(ContentType.JSON).
+			when().
+			put(ATUALIZAR_NOME).
+			then().
+			log().all().
+			statusCode(200);
+		}
+			
+			
+		//CT003 - ALTERAR EMAIL DE SIMULAÇÃO EXISTENTE 
+		
+		
+			@Test 
+			public void deveAlterarEmail() {
+				String payload = "{\n" +
+						"  \"nome\": \"Fulano de Tal\",\n" +
+		                "  \"cpf\": 470932360709,\n" +
+		                "  \"email\": \"BATATA@email.com\",\n" +
+		                "  \"valor\": 1497,\n" +
+		                "  \"parcelas\": 3,\n" +
+		                "  \"seguro\": true\n" +
+		                "}";
+				given().
+				body(payload).contentType(ContentType.JSON).
+				when().
+				put(ATUALIZAR_EMAIL).
+				then().
+				log().all().
+				statusCode(200);
+			}
+			
+			
+				
+			//CT004 - ALTERAR VALOR DE SIMULAÇÃO EXISTENTE 
+			
+				@Test 
+				public void deveAlterarValor() {
+					String payload = "{\n" +
+							"  \"nome\": \"Fulano de Tal\",\n" +
+			                "  \"cpf\": 470932360709,\n" +
+			                "  \"email\": \"email@email.com\",\n" +
+			                "  \"valor\": 1200,\n" +
+			                "  \"parcelas\": 3,\n" +
+			                "  \"seguro\": true\n" +
+			                "}";
+					given().
+					body(payload).contentType(ContentType.JSON).
+					when().
+					put(ATUALIZAR_VALOR).
+					then().
+					log().all().
+					statusCode(200);
+				}
+					
+					
+				//CT004 - ALTERAR PARCELAS DE SIMULAÇÃO EXISTENTE 
+				
+				@Test 
+				public void deveAlterarParcelas() {
+					String payload = "{\n" +
+							"  \"nome\": \"Shena Schaefer\",\n" +
+			                "  \"cpf\": 04800938503,\n" +
+			                "  \"email\": \"malik.mann@yahoo.com\",\n" +
+			                "  \"valor\": 21897.00,\n" +
+			                "  \"parcelas\": 100,\n" +
+			                "  \"seguro\": true\n" +
+			                "}";
+					given().
+					body(payload).contentType(ContentType.JSON).
+					when().
+					put(ATUALIZAR_PARCELAS).
+					then().
+					log().all().
+					statusCode(200);
+				}
+		
+				//CT004 - ALTERAR SEGURO DE SIMULAÇÃO EXISTENTE 
+				
+				@Test 
+				public void deveAlterarSeguro() {
+					String payload = "{\n" +
+							"  \"nome\": \"Buck Zemlak\",\n" +
+			                "  \"cpf\": 10113373581,\n" +
+			                "  \"email\": \"justin.wolff@gmail.com\",\n" +
+			                "  \"valor\": 30697.00,\n" +
+			                "  \"parcelas\": 4,\n" +
+			                "  \"seguro\": false\n" +
+			                "}";
+					given().
+					body(payload).contentType(ContentType.JSON).
+					when().
+					put(ATUALIZAR_SEGURO).
+					then().
+					log().all().
+					statusCode(200);
+				}
+}
+		
+		
+		
+	

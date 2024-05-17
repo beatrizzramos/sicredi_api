@@ -1,0 +1,16 @@
+package constants;
+
+public class Endpoints {
+	
+	public static final String CONSULTAR_CPF01 = "/v1/restricoes/97093236014";
+	public static final String CONSULTAR_CPF02 = "/v1/restricoes/60094146012";
+	public static final String CONSULTAR_CPF03 = "/v1/restricoes/84809766080";
+	public static final String CONSULTAR_CPF04 = "/v1/restricoes/62648716050";
+	public static final String CONSULTAR_CPF05 = "/v1/restricoes/26276298085";
+	public static final String CONSULTAR_CPF06 = "/v1/restricoes/01317496094";
+	public static final String CONSULTAR_CPF07 = "/v1/restricoes/55856777050";
+	public static final String CONSULTAR_CPF08 = "/v1/restricoes/19626829001";
+	public static final String CONSULTAR_CPF09 = "/v1/restricoes/24094592008";
+	public static final String CONSULTAR_CPF10 = "/v1/restricoes/58063164083";
+
+}

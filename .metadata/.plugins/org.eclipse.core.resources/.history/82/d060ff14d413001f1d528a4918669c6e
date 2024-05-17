@@ -1,0 +1,10 @@
+package tests.SIMULAÇÕES;
+
+import services.BaseTest;
+
+public class PUTSimulacoesTest extends BaseTest {
+
+	
+	
+	
+}

@@ -1,0 +1,18 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.SIMULACOES;
+import models.simulacoes;
+
+import com.github.javafaker.Faker;
+
+import services.BaseTest;
+
+public class PUTSimulacoesTest extends BaseTest {
+	private static Faker faker = new Faker();
+	private static Simulacoes simulacoes = new Simulacoes();
+	private static Simulation alteracao = new Simulation();
+
+	
+	
+	
+}

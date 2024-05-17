@@ -1,0 +1,20 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.RETORNAR_SIMULACOES;
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.junit.jupiter.api.Test;
+
+public class GETSimulacoesTest {
+
+	@Test 
+	public void deveConsultarSimulacoes() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES).
+		then().
+		log().all().
+		statusCode(200).
+	}
+}

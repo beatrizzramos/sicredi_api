@@ -1,0 +1,26 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.DELETAR_ID_VALIDO;
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+import services.BaseTest;
+
+import org.junit.jupiter.api.Test;
+
+public class DELETESimulacoesTest extends BaseTest{
+
+
+
+@Test 
+public void deveConsultarSimulacoesPeloCPFNaoCad() {	
+	
+	when().
+	get(DELETAR_ID_VALIDO).
+	then().
+	log().all().
+	assertThat().
+	statusCode(200).
+	and().
+	body("mensagem", equalTo("CPF 11882664478 não encontrado"));
+}
+}

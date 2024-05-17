@@ -1,0 +1,19 @@
+package models;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import lombok.Data;
+
+@Data
+public class simulacoes {
+	private String nome;
+    private String cpf;
+    private String email;
+    private double valor;
+    private int parcelas;
+    private boolean seguro;
+
+    @JsonProperty(value = "id", access = Access.WRITE_ONLY)
+    private String id;
+
+}

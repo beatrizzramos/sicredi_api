@@ -1,0 +1,151 @@
+package tests.SIMULAÇÕES;
+
+
+import static io.restassured.RestAssured.given;
+import org.junit.jupiter.api.Test;
+import io.restassured.http.ContentType;
+
+import services.BaseTest;
+
+import static constants.Endpoints.ATUALIZAR_CPF;
+import static constants.Endpoints.ATUALIZAR_NOME;
+import static constants.Endpoints.ATUALIZAR_EMAIL;
+import static constants.Endpoints.ATUALIZAR_PARCELAS;
+import static constants.Endpoints.ATUALIZAR_VALOR;
+import static constants.Endpoints.ATUALIZAR_SEGURO;
+
+
+
+
+public class PUTSimulacoesTest extends BaseTest {
+
+	//CT001 - ALTERAR CPF DE SIMULAÇÃO EXISTENTE 
+	
+	@Test 
+	public void deveAlterarCPF() {
+		String payload = "{\n" +
+				"  \"nome\": \"Fulano de Tal\",\n" +
+                "  \"cpf\": 470932360709,\n" +
+                "  \"email\": \"email@email.com\",\n" +
+                "  \"valor\": 1200,\n" +
+                "  \"parcelas\": 3,\n" +
+                "  \"seguro\": true\n" +
+                "}";
+		given().
+		body(payload).contentType(ContentType.JSON).
+		when().
+		put(ATUALIZAR_CPF).
+		then().
+		log().all();
+	}
+	
+		
+	//CT002 - ALTERAR NOME DE SIMULAÇÃO EXISTENTE 
+	
+		@Test 
+		public void deveAlterarNome() {
+			String payload = "{\n" +
+					"  \"nome\": \"Fulano de Tal\",\n" +
+	                "  \"cpf\": 470932360709,\n" +
+	                "  \"email\": \"email@email.com\",\n" +
+	                "  \"valor\": 1200,\n" +
+	                "  \"parcelas\": 3,\n" +
+	                "  \"seguro\": true\n" +
+	                "}";
+			given().
+			body(payload).contentType(ContentType.JSON).
+			when().
+			put(ATUALIZAR_CPF).
+			then().
+			log().all();
+		}
+			
+			
+		//CT003 - ALTERAR EMAIL DE SIMULAÇÃO EXISTENTE 
+		
+		
+			@Test 
+			public void deveAlterarEmail() {
+				String payload = "{\n" +
+						"  \"nome\": \"Fulano de Tal\",\n" +
+		                "  \"cpf\": 470932360709,\n" +
+		                "  \"email\": \"email@email.com\",\n" +
+		                "  \"valor\": 1200,\n" +
+		                "  \"parcelas\": 3,\n" +
+		                "  \"seguro\": true\n" +
+		                "}";
+				given().
+				body(payload).contentType(ContentType.JSON).
+				when().
+				put(ATUALIZAR_CPF).
+				then().
+				log().all();
+			}
+			
+			
+				
+			//CT004 - ALTERAR VALOR DE SIMULAÇÃO EXISTENTE 
+			
+				@Test 
+				public void deveAlterarValor() {
+					String payload = "{\n" +
+							"  \"nome\": \"Fulano de Tal\",\n" +
+			                "  \"cpf\": 470932360709,\n" +
+			                "  \"email\": \"email@email.com\",\n" +
+			                "  \"valor\": 1200,\n" +
+			                "  \"parcelas\": 3,\n" +
+			                "  \"seguro\": true\n" +
+			                "}";
+					given().
+					body(payload).contentType(ContentType.JSON).
+					when().
+					put(ATUALIZAR_CPF).
+					then().
+					log().all();
+				}
+					
+					
+				//CT004 - ALTERAR PARCELAS DE SIMULAÇÃO EXISTENTE 
+				
+				@Test 
+				public void deveAlterarParcelas() {
+					String payload = "{\n" +
+							"  \"nome\": \"Fulano de Tal\",\n" +
+			                "  \"cpf\": 470932360709,\n" +
+			                "  \"email\": \"email@email.com\",\n" +
+			                "  \"valor\": 1200,\n" +
+			                "  \"parcelas\": 3,\n" +
+			                "  \"seguro\": true\n" +
+			                "}";
+					given().
+					body(payload).contentType(ContentType.JSON).
+					when().
+					put(ATUALIZAR_CPF).
+					then().
+					log().all();
+				}
+		
+				//CT004 - ALTERAR SEGURO DE SIMULAÇÃO EXISTENTE 
+				
+				@Test 
+				public void deveAlterarSeguro() {
+					String payload = "{\n" +
+							"  \"nome\": \"Fulano de Tal\",\n" +
+			                "  \"cpf\": 470932360709,\n" +
+			                "  \"email\": \"email@email.com\",\n" +
+			                "  \"valor\": 1200,\n" +
+			                "  \"parcelas\": 3,\n" +
+			                "  \"seguro\": true\n" +
+			                "}";
+					given().
+					body(payload).contentType(ContentType.JSON).
+					when().
+					put(ATUALIZAR_CPF).
+					then().
+					log().all();
+				}
+}
+		
+		
+		
+	

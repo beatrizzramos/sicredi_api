@@ -1,0 +1,67 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.SIMULACOES;
+import static constants.Endpoints.RETORNAR_SIMULACOES_CPF_CADASTRADO;
+import static constants.Endpoints.RETORNAR_SIMULACOES_CPF_NAO_CADASTRADO;
+
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.junit.jupiter.api.Test;
+import services.BaseTest;
+
+public class GETSimulacoesTest extends BaseTest{
+
+	
+	//CT001_001
+	@Test 
+	public void deveConsultarSimulacoes() {	
+		
+		when().
+		get(SIMULACOES).
+		then().
+		log().all().
+		assertThat().
+		statusCode(200);
+	}
+	
+	//CT001_002
+	@Test 
+	public void deveConsultarSimulacoesSemNenhumCadastro() {	
+		
+		when().
+		get(SIMULACOES).
+		then().
+		log().all().
+		assertThat().
+		statusCode(200);
+	
+	//CT001_003
+	@Test 
+	public void deveConsultarSimulacoesPeloCPF() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES_CPF_CADASTRADO).
+		then().
+		log().all().
+		assertThat().
+		statusCode(200);
+	}
+	
+	//CT001_004
+	@Test 
+	public void deveConsultarSimulacoesPeloCPFNaoCad() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES_CPF_NAO_CADASTRADO).
+		then().
+		log().all().
+		assertThat().
+		statusCode(404).
+		and().
+		body("mensagem", equalTo("CPF 11882664478 não encontrado"));
+	}
+	
+	
+}
+

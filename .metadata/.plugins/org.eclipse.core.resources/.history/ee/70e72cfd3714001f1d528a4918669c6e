@@ -1,0 +1,63 @@
+package tests.SIMULAÇÕES;
+
+
+import static io.restassured.RestAssured.given;
+import org.junit.jupiter.api.Test;
+import io.restassured.http.ContentType;
+import com.github.javafaker.Faker;
+
+import services.BaseTest;
+
+
+import static constants.Endpoints.ATUALIZAR_CPF;
+
+
+
+
+
+
+public class PUTSimulacoesTest extends BaseTest {
+
+	//CT - ALTERAR SIMULAÇÃO COM CPF EXISTENTE COM SUCESSO
+	@Test 
+	public void deveAlterarSimulacao() {
+		String payload = "{\n" +
+				"  \"nome\": \"Fulano de Tal\",\n" +
+                "  \"cpf\": 470932360709,\n" +
+                "  \"email\": \"email@email.com\",\n" +
+                "  \"valor\": 1200,\n" +
+                "  \"parcelas\": 3,\n" +
+                "  \"seguro\": true\n" +
+                "}";
+		given().
+		body(payload).contentType(ContentType.JSON).
+		when().
+		post(ATUALIZAR_CPF).
+		then().
+		log().all();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	//CT - ALTERAR SIMULAÇÃO COM CPF INEXISTENTE 
+	
+	
+	//CT - ALTERAR SIMULAÇÃO COM CPF EXISTENTE COM SUCESSO
+	
+	
+	
+	
+}

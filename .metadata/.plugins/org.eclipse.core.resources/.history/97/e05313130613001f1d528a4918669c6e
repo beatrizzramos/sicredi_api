@@ -1,0 +1,50 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.RETORNAR_SIMULACOES;
+import static constants.Endpoints.RETORNAR_SIMULACOES_CPF_CADASTRADO;
+import static constants.Endpoints.RETORNAR_SIMULACOES_CPF_NAO_CADASTRADO;
+
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.junit.jupiter.api.Test;
+import services.BaseTest;
+
+public class GETSimulacoesTest extends BaseTest{
+
+	@Test 
+	public void deveConsultarSimulacoes() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES).
+		then().
+		log().all().
+		assertThat().
+		statusCode(200);
+	}
+	
+	@Test 
+	public void deveConsultarSimulacoesPeloCPF() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES_CPF_CADASTRADO).
+		then().
+		log().all().
+		assertThat().
+		statusCode(200);
+	}
+	
+	@Test 
+	public void deveConsultarSimulacoesPeloCPFNaoCad() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES_CPF_NAO_CADASTRADO).
+		then().
+		log().all().
+		assertThat().
+		statusCode(200);
+	}
+	
+	
+}
+

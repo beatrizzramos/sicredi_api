@@ -1,0 +1,22 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.CONSULTAR_CPF01;
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.junit.jupiter.api.Test;
+
+public class GETSimulacoesTest {
+
+	@Test 
+	public void deveConsultarRestricao1() {	
+		
+		when().
+		get(RETORNAR_SIMULACOES).
+		then().
+		log().all().
+		statusCode(200).
+		and().
+		body("mensagem", equalTo("O CPF 97093236014 possui retrição"));
+}
+}

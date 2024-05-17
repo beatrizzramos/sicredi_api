@@ -1,0 +1,316 @@
+package tests.SIMULAÇÕES;
+
+import static constants.Endpoints.SIMULACOES;
+import static io.restassured.RestAssured.given;
+
+import java.util.Locale;
+
+import org.junit.jupiter.api.Test;
+
+import com.github.javafaker.Faker;
+
+import io.restassured.http.ContentType;
+import models.simulacoes;
+import services.BaseTest;
+
+public class POSTSimulacoesTest extends BaseTest {
+    private static Faker faker = new Faker(Locale.ENGLISH);  
+
+    
+    //CT001- SIMULAÇÃO CADASTRADA COM SUCESSO 
+    
+    @Test
+    public void deveCriarNovaSimulacaoComSucesso() {
+        simulacoes simulacoes = new simulacoes();
+        simulacoes.setNome(faker.name().fullName());
+        simulacoes.setCpf(faker.number().digits(11));  // Gerar CPF fictício
+        simulacoes.setEmail(faker.internet().emailAddress());
+        simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+        simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+        simulacoes.setSeguro(true);
+        
+
+        given().
+            contentType(ContentType.JSON).  
+            body(simulacoes).
+        when().
+            post(SIMULACOES).
+        then().
+            log().all().
+            statusCode(201);  
+        
+        
+        
+           }
+    
+  //CT002- SIMULAÇÃO CADASTRADA COM O DADO NOME EM BRANCO - BUG
+    
+    @Test
+    public void naoDeveCriarSimulacaoComNomeEmBranco() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(" ");
+    simulacoes.setCpf(faker.number().digits(11));  // Gerar CPF fictício
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  // Definir o tipo de conteúdo como JSON
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+    //CT003- SIMULAÇÃO CADASTRADA COM O DADO CPF EM BRANCO - BUG
+    
+    @Test
+    public void naoDeveCriarSimulacaoComCPFEmBranco() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(" ");  
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+   
+    
+  //CT004- SIMULAÇÃO CADASTRADA COM O DADO CPF NO FORMATO 999.999.999-99
+    
+    @Test
+    public void naoDeveCriarSimulacaoComCPFCaracteres() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf("222.885.654-99");  
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  // Definir o tipo de conteúdo como JSON
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+//CT005- SIMULAÇÃO CADASTRADA COM O DADO CPF COM CARACTERES NÃO NUMÉRICOS
+    
+    @Test
+    public void naoDeveCriarSimulacaoComCPFNaoNumericos() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf("abcde");  
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+  //CT006- SIMULAÇÃO CADASTRADA COM O DADO EMAIL EM BRANCO - PASSOU
+    @Test
+    public void naoDeveCriarSimulacaoComEmailEmBranco() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));  
+    simulacoes.setEmail(" ");
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+    
+    
+  
+  //CT007- SIMULAÇÃO CADASTRADA COM O DADO EMAIL SEM O @, PARA VERIFICAR O PADRÃO VÁLIDO - PASSOU
+    @Test
+    public void naoDeveCriarSimulacaoComEmailSem() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));  
+    simulacoes.setEmail("beatrizkrhotmail.com");
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+    
+  //CT001- SIMULAÇÃO CADASTRADA COM O "VALOR" INVÁLIDO (MENOR QUE 1000,00) - BUG
+    @Test
+    public void naoDeveCriarSimulacaoComValorMenorQue1000() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));  
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(0, 999));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  // Definir o tipo de conteúdo como JSON
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+  //CT001- SIMULAÇÃO CADASTRADA COM O "VALOR" INVÁLIDO (MAIOR QUE 40000,00) - BUG
+    @Test
+    public void naoDeveCriarSimulacaoComValorMaiorQue40000() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));  // Gerar CPF fictício
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(40001, 100000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+  //CT001- SIMULAÇÃO CADASTRADA COM  "PARCELA" INVÁLIDA (MENOR QUE 2) - BUG 
+    @Test
+    public void naoDeveCriarSimulacaoComParcelaMenor2() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));  
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(0, 1));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+    
+  //CT001- SIMULAÇÃO CADASTRADA COM O "PARCELA" INVÁLIDA (MAIOR QUE 48) - BUG
+    
+    @Test //BUG
+    public void naoDeveCriarSimulacaoComParcelaMaior48() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));  
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(49, 100));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(400);  
+       }
+    
+    
+  
+    
+  //CT001- SIMULAÇÃO COM CPF JÁ EXISTENTE
+    @Test
+    public void naoDeveCriarSimulacaoComCPFExistente() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf("67409012973");
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguro(true);
+
+    given().
+        contentType(ContentType.JSON).  // Definir o tipo de conteúdo como JSON
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(409);  
+       }
+    
+    
+    //CT - CRIAR SIMULAÇÃO COM SEGURO COMO STRING - BUG
+    
+    @Test
+    public void naoDeveCriarSimulacaoComSeguroString() {
+    simulacoes simulacoes = new simulacoes();
+    simulacoes.setNome(faker.name().fullName());
+    simulacoes.setCpf(faker.number().digits(11));
+    simulacoes.setEmail(faker.internet().emailAddress());
+    simulacoes.setValor(faker.number().numberBetween(1000, 40000));
+    simulacoes.setParcelas(faker.number().numberBetween(2, 48));
+    simulacoes.setSeguroo("ok");
+
+    given().
+        contentType(ContentType.JSON).  // Definir o tipo de conteúdo como JSON
+        body(simulacoes).
+    when().
+        post(SIMULACOES).
+    then().
+        log().all().
+        statusCode(409);  
+       }
+    
+
+}
